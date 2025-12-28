@@ -1,9 +1,13 @@
-Resort AI Management System
-🏨 Technical Overview
+# Resort AI Management System
+
+## 🏨 Technical Overview
+
 A production-grade resort management platform leveraging modern Python stack with AI-powered agentic workflows. The system provides intelligent guest interactions through specialized AI agents while maintaining real-time operational visibility via an analytical dashboard.
 
-🛠️ Technology Stack Architecture
-Core Infrastructure Layer
+## 🛠️ Technology Stack Architecture
+
+### Core Infrastructure Layer
+```
 ┌─────────────────────────────────────────────────────────────┐
 │                    APPLICATION LAYER                        │
 ├─────────────────────────────────────────────────────────────┤
@@ -35,7 +39,10 @@ Core Infrastructure Layer
 │  • Relationship Mapping       │   • Concurrent Access       │
 │  • Transaction Control        │   • .db File Format         │
 └─────────────────────────────────────────────────────────────┘
-Component Integration Flow
+```
+
+### Component Integration Flow
+```
 Client Request
      ↓
 [FastAPI Endpoint] ←── HTTP/WebSocket
@@ -59,71 +66,94 @@ Client                  Update
                  [Plotly Charts]
                         ↓
                  [Pandas DataFrames]
-📊 Detailed Technology Specifications
-Backend Framework (FastAPI)
-Version: 0.104+ (ASGI-compliant)
-Key Features:
-Automatic OpenAPI/Swagger documentation at /docs
-Async/await support for concurrent request handling
-Dependency injection system
-Request/Response validation with Pydantic
-WebSocket endpoints for real-time communication
-Configuration:
-# Uvicorn server configuration
-uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
-AI Engine (Google Gemini 2.0 Flash)
-SDK: google-generativeai Python client
-Model: gemini-2.0-flash for low-latency operations
-Integration Pattern:
-User Input → Prompt Engineering → Gemini API → Structured Output
-      ↓           ↓                  ↓             ↓
-[Raw Text] [System + User]    [REST Call]   [JSON/Text]
-                            [Context + Tools]
-Agent Types:
-Receptionist: General inquiries, facility information
-Restaurant: Menu queries, order processing
-Room Service: Amenity requests, maintenance
-Dashboard Framework (Streamlit)
-Architecture: React-like declarative UI
-Key Components:
-st.dataframe(): Tabular data display with sorting/filtering
-st.plotly_chart(): Interactive visualizations
-st.metric(): Real-time KPI cards
-st.selectbox()/st.button(): Interactive controls
-Update Mechanism: Polling-based synchronization with backend API
-Data Visualization (Plotly + Pandas)
-Plotly: Interactive, publication-quality graphs
-Pie charts for request distribution
-Bar charts for order volume trends
-Time-series graphs for request patterns
-Pandas: Data manipulation engine
-# Typical dashboard data flow
-API Response → Pandas DataFrame → Data Cleaning → Plotly Figure → Streamlit Display
-Database Layer (SQLAlchemy + SQLite)
-SQLAlchemy Features:
-Declarative ORM with Base = declarative_base()
-Session management with context handlers
-Relationship modeling (one-to-many, many-to-one)
-Alembic-ready migration structure
-SQLite Configuration:
-sqlite:///resort.db (relative path)
-Connection pooling: 5-20 connections
-Journal mode: WAL (Write-Ahead Logging)
-Configuration Management (python-dotenv)
-Structure:
-.env
-├── API_KEYS
-│   └── OPENAI_API_KEY=gemini-...
-├── DATABASE
-│   └── DATABASE_URL=sqlite:///resort.db
-└── APPLICATION
-    ├── LOG_LEVEL=INFO
-    └── POLLING_INTERVAL=2
-Loading Pattern:
-from dotenv import load_dotenv
-load_dotenv()  # Loads from .env file
-🔄 System Communication Patterns
-HTTP API Communication
+```
+
+## 📊 Detailed Technology Specifications
+
+### **Backend Framework (FastAPI)**
+- **Version**: 0.104+ (ASGI-compliant)
+- **Key Features**:
+  - Automatic OpenAPI/Swagger documentation at `/docs`
+  - Async/await support for concurrent request handling
+  - Dependency injection system
+  - Request/Response validation with Pydantic
+  - WebSocket endpoints for real-time communication
+- **Configuration**: 
+  ```python
+  # Uvicorn server configuration
+  uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+  ```
+
+### **AI Engine (Google Gemini 2.0 Flash)**
+- **SDK**: `google-generativeai` Python client
+- **Model**: `gemini-2.0-flash` for low-latency operations
+- **Integration Pattern**:
+  ```
+  User Input → Prompt Engineering → Gemini API → Structured Output
+        ↓           ↓                  ↓             ↓
+  [Raw Text] [System + User]    [REST Call]   [JSON/Text]
+                              [Context + Tools]
+  ```
+- **Agent Types**:
+  1. **Receptionist**: General inquiries, facility information
+  2. **Restaurant**: Menu queries, order processing
+  3. **Room Service**: Amenity requests, maintenance
+
+### **Dashboard Framework (Streamlit)**
+- **Architecture**: React-like declarative UI
+- **Key Components**:
+  - `st.dataframe()`: Tabular data display with sorting/filtering
+  - `st.plotly_chart()`: Interactive visualizations
+  - `st.metric()`: Real-time KPI cards
+  - `st.selectbox()`/`st.button()`: Interactive controls
+- **Update Mechanism**: Polling-based synchronization with backend API
+
+### **Data Visualization (Plotly + Pandas)**
+- **Plotly**: Interactive, publication-quality graphs
+  - Pie charts for request distribution
+  - Bar charts for order volume trends
+  - Time-series graphs for request patterns
+- **Pandas**: Data manipulation engine
+  ```python
+  # Typical dashboard data flow
+  API Response → Pandas DataFrame → Data Cleaning → Plotly Figure → Streamlit Display
+  ```
+
+### **Database Layer (SQLAlchemy + SQLite)**
+- **SQLAlchemy Features**:
+  - Declarative ORM with `Base = declarative_base()`
+  - Session management with context handlers
+  - Relationship modeling (one-to-many, many-to-one)
+  - Alembic-ready migration structure
+- **SQLite Configuration**:
+  ```
+  sqlite:///resort.db (relative path)
+  Connection pooling: 5-20 connections
+  Journal mode: WAL (Write-Ahead Logging)
+  ```
+
+### **Configuration Management (python-dotenv)**
+- **Structure**:
+  ```bash
+  .env
+  ├── API_KEYS
+  │   └── OPENAI_API_KEY=gemini-...
+  ├── DATABASE
+  │   └── DATABASE_URL=sqlite:///resort.db
+  └── APPLICATION
+      ├── LOG_LEVEL=INFO
+      └── POLLING_INTERVAL=2
+  ```
+- **Loading Pattern**:
+  ```python
+  from dotenv import load_dotenv
+  load_dotenv()  # Loads from .env file
+  ```
+
+## 🔄 System Communication Patterns
+
+### **HTTP API Communication**
+```yaml
 Endpoints:
   Guest-Facing:
     POST /chat: Process guest messages via AI agents
@@ -138,7 +168,10 @@ Endpoints:
   
   WebSocket:
     /ws/updates: Real-time status updates
-Data Flow Between Components
+```
+
+### **Data Flow Between Components**
+```
 ┌─────────────┐    REST/JSON    ┌─────────────┐    SQLAlchemy    ┌─────────────┐
 │  Streamlit  │ ◄─────────────► │   FastAPI   │ ◄─────────────► │   SQLite    │
 │  Dashboard  │    Polling      │   Backend   │     ORM Calls   │  Database   │
@@ -153,8 +186,12 @@ Data Flow Between Components
 │   Client    │ ◄─────────────► │   Agent     │ ◄─────────────► │  Google AI  │
 │ (Frontend)  │   Request/      │  Framework  │    REST Calls   │   Services  │
 └─────────────┘     Response    └─────────────┘                 └─────────────┘
-🏗️ Development Architecture Patterns
-Multi-Agent System Design
+```
+
+## 🏗️ Development Architecture Patterns
+
+### **Multi-Agent System Design**
+```
                       ┌─────────────────┐
                       │   Orchestrator  │
                       │  (FastAPI Route)│
@@ -183,7 +220,10 @@ Multi-Agent System Design
                       │  Database   │
                       │  (SQLite)   │
                       └─────────────┘
-Database Schema Implementation
+```
+
+### **Database Schema Implementation**
+```python
 # SQLAlchemy ORM Pattern
 class Order(Base):
     __tablename__ = 'orders'
@@ -201,7 +241,10 @@ class Order(Base):
     # Pydantic schema for API validation
     class Config:
         orm_mode = True
-AI Agent Execution Pattern
+```
+
+### **AI Agent Execution Pattern**
+```python
 # Simplified agent execution flow
 def execute_agent_workflow(user_input: str) -> dict:
     # 1. Input validation (Pydantic)
@@ -227,34 +270,52 @@ def execute_agent_workflow(user_input: str) -> dict:
         "data": db_record,
         "metadata": {"agent": agent.name, "intent": intent}
     }
-Data Flow Diagram
-User sends a message via Chat Interface.
-Agent processes the intent and calls a Tool (e.g., place_restaurant_order).
-Tool writes data (Order/ServiceRequest) to resort.db using SQLAlchemy models.
-Dashboard (Streamlit) polls the API (/orders, /requests) which reads from resort.db.
-Staff updates status on Dashboard -> API updates resort.db -> User can query status.
-Models (backend/models.py)
-Order: Tracks room_number, items (JSON), total_amount, and status.
-ServiceRequest: Tracks room_number, request_type, details, and status.
-MenuItem: Stores the catalog of available food items and prices.
-Dashboard Connectivity
-The Streamlit dashboard (dashboard/app.py) does not connect directly to the database. Instead, it communicates via the FastAPI endpoints:
+```
+### Data Flow Diagram
 
-GET /orders: Fetches all restaurant orders.
-GET /requests: Fetches all housekeeping/service requests.
-PUT /orders/{id}: Updates order status (Pending -> Preparing -> Delivered).
-PUT /requests/{id}: Updates request status.
+1.  **User** sends a message via Chat Interface.
+2.  **Agent** processes the intent and calls a **Tool** (e.g., `place_restaurant_order`).
+3.  **Tool** writes data (Order/ServiceRequest) to `resort.db` using SQLAlchemy models.
+4.  **Dashboard** (Streamlit) polls the API (`/orders`, `/requests`) which reads from `resort.db`.
+5.  **Staff** updates status on Dashboard -> API updates `resort.db` -> User can query status.
+
+### Models (`backend/models.py`)
+
+*   **Order**: Tracks `room_number`, `items` (JSON), `total_amount`, and `status`.
+*   **ServiceRequest**: Tracks `room_number`, `request_type`, `details`, and `status`.
+*   **MenuItem**: Stores the catalog of available food items and prices.
+
+### Dashboard Connectivity
+
+The Streamlit dashboard (`dashboard/app.py`) does not connect directly to the database. Instead, it communicates via the FastAPI endpoints:
+
+*   **GET /orders**: Fetches all restaurant orders.
+*   **GET /requests**: Fetches all housekeeping/service requests.
+*   **PUT /orders/{id}**: Updates order status (Pending -> Preparing -> Delivered).
+*   **PUT /requests/{id}**: Updates request status.
+
 This decoupling allows the backend to handle all logic and validation while the dashboard remains a lightweight UI layer.
 
-🚀 Running the System
-1. Start the Backend Server
+---
+
+## 🚀 Running the System
+
+### 1. Start the Backend Server
 This serves the API and the AI Agents.
-
+```bash
 uvicorn backend.main:app --reload --port 8000
-2. Start the Dashboard
-This launches the admin interface.
+```
 
+### 2. Start the Dashboard
+This launches the admin interface.
+```bash
 python -m streamlit run dashboard/app.py
-🔑 Key Configuration
-.env: Must contain OPENAI_API_KEY (used here for Gemini compatibility layer or direct Gemini configuration).
-menu_output.txt: The text source for the Restaurant Agent to read the menu.
+```
+
+---
+
+## 🔑 Key Configuration
+
+*   **.env**: Must contain `OPENAI_API_KEY` (used here for Gemini compatibility layer or direct Gemini configuration).
+*   **menu_output.txt**: The text source for the Restaurant Agent to read the menu.
+
