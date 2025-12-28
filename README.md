@@ -60,6 +60,7 @@ Client                  Update
                  [Plotly Charts]
                         ↓
                  [Pandas DataFrames]
+                 
 📊 Detailed Technology Specifications
 Backend Framework (FastAPI)
 Version: 0.104+ (ASGI-compliant)
