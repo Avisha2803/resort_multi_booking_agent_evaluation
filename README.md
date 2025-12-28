@@ -1,27 +1,8 @@
 # Resort AI Management System
 
-📸 System Architecture & Screenshots Overview
+## 🏨 Technical Overview
 
-The screenshots illustrate the complete workflow of the Resort AI Management System, showcasing its modular, production-style architecture. Guest requests are handled through FastAPI APIs, validated using Pydantic, and intelligently routed to specialized AI agents powered by Google Gemini 2.0 Flash. These agents perform intent classification, execute business logic, and persist data using SQLAlchemy with SQLite.
-
-The Streamlit administrative dashboard provides real-time visibility into orders and service requests, offering interactive tables, KPIs, and visual analytics built with Pandas and Plotly. All dashboard interactions occur via backend APIs, ensuring clean separation between UI, logic, and data layers. Together, the screenshots demonstrate an end-to-end AI-driven resort management workflow with real-time monitoring and intelligent automation.## 🏨 Technical Overview
-
-A production-gr![WhatsApp Image 2025-12-28 at 1 42 56 PM (1)](https://github.com/user-attachments/assets/b3a7c523-815e-4519-8293-73e5450c1d48)
-ade resort management platform leveraging modern Python stack with AI-powered agentic workflows. The system provides intelligent guest interactions through specialized AI agents while maintaining real-time operational visibility via an analytical dashboard.
-
-![WhatsApp Image 2025-12-28 at 1 42 56 PM (2)](https://github.com/user-attachments/assets/3a660f3b-b256-4689-b817-61ebed8bbf09)
-![WhatsApp Image 2025-12-28 at 1 42 56 PM (3)](https://github.com/user-attachments/assets/b44c36ff-ef93-4811-b236-4e6a7f5246a8)
-
-![WhatsApp Image 2025-12-28 at 1 42 56 PM (4)](https://github.com/user-attachments/assets/5fe077c4-d744-4290-98bf-e036fd9![WhatsApp Image 2025-12-28 at 1 42 57 PM (3)](https://github.com/user-attachments/assets/71ee5bdd-e8ab-44a1-bc50-8586bb7ec2fa)
-998cb)
-![WhatsApp Imag![WhatsApp Image 2025-12-28 at 1 42 57 PM (1)](https://github.com/user-attachments/asset![WhatsApp Imag![WhatsApp Image 2025-12-28 at 1 42 58 PM](https://github.com/user-attachments/assets/7a9cd515-9803-4fc7-9c92-d0a567b31bc4)
-e 2025-12-28 at 1 42 57 PM (6)](https://github.com/user-attachments/assets/32c74ec0-7e9d-44d8-bec0-0b21a4721027)
-s/ab09bd89-2cc8-4888-9d![WhatsApp Image 2025-12-28 at 1 42 57 PM (7)](https://github.com/user-attachments/assets/3f![WhatsApp Image 2025-12-28 at 1 42 57 PM](https://github.com/user-attachments/assets/dcb26e42-04d6-4b6b-a9dc-df50cdd4b1fe)
-c99d8d-30ab-47a6-a49f-ba85bc3be161)
-8d-b815d04c1186)
-e 2025-12-28 at 1 42 56 PM](https://github.com/user-attachments/assets/a874670c-85e4-4863-a95a-bbfb1b292f25)![WhatsApp Image 2025-![WhatsApp Image 2025-12-28 at 1 42 57 PM (5)](https://github.com/user-attachments/assets/bcd23b84-a50f-42da-9419-ac4ecc98504e)
-12-28 at 1 42 57 PM (4)](https://github.com/user-attachments/assets/30f15163-8991-45d8-af80-db486774f35b)
-
+A production-grade resort management platform leveraging modern Python stack with AI-powered agentic workflows. The system provides intelligent guest interactions through specialized AI agents while maintaining real-time operational visibility via an analytical dashboard.
 
 ## 🛠️ Technology Stack Architecture
 
