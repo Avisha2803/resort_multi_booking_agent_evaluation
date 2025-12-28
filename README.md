@@ -35,6 +35,7 @@ Core Infrastructure Layer
 │  • Relationship Mapping       │   • Concurrent Access       │
 │  • Transaction Control        │   • .db File Format         │
 └─────────────────────────────────────────────────────────────┘
+
 Component Integration Flow
 Client Request
      ↓
